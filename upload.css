@@ -8,9 +8,9 @@ body {
     flex-direction: column;
     align-items: center;
     height: 100vh;
-  }
-  
-  .background-container {
+}
+
+.background-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -20,10 +20,10 @@ body {
     filter: blur(4px) brightness(50%);
     background-size: cover;
     z-index: -2;
-  }
-  
-  /* Header styling */
-  header {
+}
+
+/* Header styling */
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,158 +35,188 @@ body {
     top: 0;
     left: 0;
     z-index: 1000;
-  }
-  
-  .logo h1 {
+}
+
+.logo h1 {
     margin: 0;
     font-size: 24px;
     font-weight: bold;
     color: #ffffff;
-  }
-  
-  nav ul {
+}
+
+nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
     gap: 20px;
-  }
-  
-  nav ul li {
+}
+
+nav ul li {
     display: inline;
-  }
-  
-  nav ul li a {
+}
+
+nav ul li a {
     color: #ffffff;
     text-decoration: none;
     font-size: 18px;
     padding: 5px 10px;
     transition: background-color 0.3s;
-  }
-  
-  nav ul li a:hover {
+}
+
+nav ul li a:hover {
     background-color: #40916c;
     border-radius: 5px;
-  }
-  
-  /* Section for upload */
-  .upload-section {
+}
+
+/* Section for upload */
+.upload-section {
     text-align: center;
-    margin-top: 120px; /* Adjusted for header */
-  }
-  
-  /* New Folder-style upload box */
-  .container {
+    margin-top: 120px;
+}
+
+/* Larger container for the upload area */
+.container {
+    margin-top: 100px;
     --transition: 350ms;
-    --folder-W: 120px;
-    --folder-H: 80px;
+    --folder-W: 180px; /* Increased width */
+    --folder-H: 120px; /* Increased height */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    padding: 50px;
-    margin-top: 50px;
-    background: linear-gradient(135deg, #6dd5ed, #2193b0);
+    padding: 10px;
+    background: linear-gradient(135deg, #00e893, #00bb77);
     border-radius: 15px;
+    
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    height: calc(var(--folder-H) * 1.7);
+    height: calc(var(--folder-H) * 2);
+    width: calc(var(--folder-W) * 2);
     position: relative;
-  }
-  
-  .folder {
+    margin-bottom: 20px;
+}
+
+.folder {
     position: absolute;
-    top: -20px;
-    left: calc(50% - 60px);
+    top: -30px;
+    left: calc(50% - 90px); /* Adjusted for larger folder */
     animation: float 2.5s infinite ease-in-out;
     transition: transform var(--transition) ease;
-  }
-  
-  .folder:hover {
+}
+
+.folder:hover {
     transform: scale(1.05);
-  }
-  
-  .folder .front-side,
-  .folder .back-side {
+}
+
+.folder .front-side,
+.folder .back-side {
     position: absolute;
     transition: transform var(--transition);
     transform-origin: bottom center;
-  }
-  
-  .folder .back-side::before,
-  .folder .back-side::after {
-    content: "";
-    display: block;
-    background-color: white;
-    opacity: 0.5;
-    z-index: 0;
-    width: var(--folder-W);
-    height: var(--folder-H);
-    position: absolute;
-    transform-origin: bottom center;
-    border-radius: 15px;
-    transition: transform 350ms;
-    z-index: 0;
-  }
-  
-  .container:hover .back-side::before {
-    transform: rotateX(-5deg) skewX(5deg);
-  }
-  .container:hover .back-side::after {
-    transform: rotateX(-15deg) skewX(12deg);
-  }
-  
-  .folder .front-side {
-    z-index: 1;
-  }
-  
-  .container:hover .front-side {
-    transform: rotateX(-40deg) skewX(15deg);
-  }
-  
-  .folder .tip {
+}
+
+.folder .tip {
     background: linear-gradient(135deg, #ff9a56, #ff6f56);
-    width: 80px;
-    height: 20px;
+    width: 120px;
+    height: 30px;
     border-radius: 12px 12px 0 0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     position: absolute;
     top: -10px;
     z-index: 2;
-  }
-  
-  .folder .cover {
+}
+
+.folder .cover {
     background: linear-gradient(135deg, #ffe563, #ffc663);
     width: var(--folder-W);
     height: var(--folder-H);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-  }
-  
-  /* Custom file upload button */
-  .custom-file-upload {
+}
+
+.custom-file-upload {
     font-size: 1.1em;
-    color: #ced5da;
+    color: #ffffff;
     text-align: center;
-    background: rgba(255, 255, 255, 0.13);
+    background: #00965f;
     border: none;
     border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: background var(--transition) ease;
     display: inline-block;
-    width: 100%;
     padding: 10px 35px;
-    position: relative;
-  }
-  
-  .custom-file-upload:hover {
+}
+
+.custom-file-upload:hover {
     background: rgba(255, 255, 255, 0.4);
-  }
-  
-  .custom-file-upload input[type="file"] {
+}
+
+.custom-file-upload input[type="file"] {
     display: none;
-  }
-  
-  @keyframes float {
-    0%
-  
+}
+
+/* Preview image */
+#previewImage {
+    display: none;
+    max-width: 100%;
+    max-height: 300px;
+    margin-top: 20px;
+    border: 2px solid #52b788;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+/* Button group styling */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Upload button */
+.upload-btn {
+    width: 250px;
+    margin-top: 10px;
+    background-color: #52b788;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-btn:hover {
+    background-color: #40916c;
+}
+
+/* Recapture button */
+.recapture-btn {
+    width: 250px;
+    margin-top: 10px;
+    background-color: #ff9a56;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.recapture-btn:hover {
+    background-color: #ff6f56;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}

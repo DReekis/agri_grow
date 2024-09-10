@@ -7,10 +7,10 @@
   <title>Upload Crop Image</title>
 </head>
 <body>
-  <div class="background-container"></div>
+    <div class="background-container"></div>
   <header>
     <div class="logo">
-      <h1>Your Logo</h1>
+      <h1>AGROSSIANS</h1>
     </div>
     <nav>
       <ul>
@@ -22,8 +22,7 @@
   </header>
 
   <div class="upload-section">
-    <!-- Replaced upload container with the new folder-style upload -->
-    <div class="container">
+    <div class="container" id="folderContainer">
       <div class="folder">
         <div class="front-side">
           <div class="tip"></div>
@@ -32,22 +31,43 @@
         <div class="back-side cover"></div>
       </div>
       <label class="custom-file-upload">
-        <input type="file" id="fileInput" onchange="previewImage(event)">
+        <input class="title" type="file" id="fileInput" onchange="previewImage(event)" />
         Choose a file
       </label>
     </div>
+
+    <!-- Image Preview -->
     <img id="previewImage" />
+
+    <!-- Buttons -->
+    <div class="button-group" style="display: none;" id="buttonGroup">
+      <button class="upload-btn" onclick="uploadImage()">Upload Image</button>
+      <button class="recapture-btn" onclick="triggerFileInput()">Recapture</button>
+    </div>
   </div>
 
   <script>
+    function triggerFileInput() {
+      document.getElementById('fileInput').click();
+    }
+
     function previewImage(event) {
       const reader = new FileReader();
       reader.onload = function () {
         const output = document.getElementById('previewImage');
         output.src = reader.result;
         output.style.display = 'block';
+        
+        // Hide the folder and show buttons
+        document.getElementById('folderContainer').style.display = 'none';
+        document.getElementById('buttonGroup').style.display = 'flex';
       }
       reader.readAsDataURL(event.target.files[0]);
+    }
+
+    function uploadImage() {
+      alert("Image uploaded!");
+      // Additional upload logic can be added here
     }
   </script>
 </body>
