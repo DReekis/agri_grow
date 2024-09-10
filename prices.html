@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Page</title>
+    <link rel="stylesheet" href="prices.css">
+</head>
+<body>
+    <div class="background-container"></div>
+    <header>
+        <div class="logo">
+            <h1>AGROSSIANS</h1> 
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/main.html">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="form-wrapper">
+        <div class="form-box">
+            <div class="form-group">
+                <label for="State"><b>State</b></label>
+                <select
+                    id="sts"
+                    name="stt"
+                    class="form-control"
+                    onchange="updateCities(this.value);"
+                    required
+                >
+                    <option value="" disabled selected>Select your state</option>
+                    <!-- Add other states here -->
+                </select>
+                <br />
+                <label for="City"><b>City</b></label>
+                <select
+                    id="City"
+                    class="form-control"
+                    name="City"
+                    required
+                >
+                    <option value="" disabled selected>Select your City</option>
+                    
+                </select>
+                <br />
+                <label for="Commodity"><b>Commodity</b></label>
+                <select
+                    id="Commodity"
+                    class="form-control"
+                    name="Commodity"
+                    required
+                >
+                    <option value="" disabled selected>Select your Commodity</option>
+                    
+                </select>
+                <br />
+                <button
+                    type="submit"
+                    class="btn-submit"
+                >
+                    Get Price
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const statesCities = fetch('cities.json')
+            .then(response => response.json())
+            .then(data => {
+                // Populate state dropdown
+                const stateSelect = document.getElementById('sts');
+                Object.keys(data).forEach(state => {
+                    const option = document.createElement('option');
+                    option.value = state;
+                    option.textContent = state;
+                    stateSelect.appendChild(option);
+                });
+            });
+
+        function updateCities(state) {
+            const citiesSelect = document.getElementById('City');
+            citiesSelect.innerHTML = ''; 
+
+            fetch('cities.json')
+                .then(response => response.json())
+                .then(data => {
+                    const cities = data[state] || [];
+                    cities.forEach(City => {
+                        const option = document.createElement('option');
+                        option.value = City;
+                        option.textContent = City;
+                        citiesSelect.appendChild(option);
+                    });
+                });
+        }
+    </script>
+</body>
+</html>
