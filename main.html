@@ -7,25 +7,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="background-container"></div>
     <header>
         <div class="logo">
             <h1>AgricultureWorks</h1> 
         </div>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
+                <li><a href="/main.html">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
-
     <div class="container">
-        <h1>Agriculture Works</h1>
-        <button class="button" id="upload-photo">Upload Photo</button>
-        <button class="button" id="crop-prices">Future Crop Prices</button>
-        <button class="button" id="crop-recommendation">Crop Recommendation</button>
+        <a href="upload.html" class="button">
+            <img src="/assets/upload_photo.png" alt="Upload Photo">
+            <div class="button-text">Upload Photo</div>
+        </a>
+        <a href="prices.html" class="button">
+            <img src="/assets/price.png" alt="Check Prices">
+            <div class="button-text">Check Prices</div>
+        </a>
+        <a href="recommendation.html" class="button">
+            <img src="/assets/recommendation.png" alt="Get Recommendations">
+            <div class="button-text">Get Recommendation</div>
+        </a>
     </div>
+    
 
     <script src="script.js"></script>
 </body>

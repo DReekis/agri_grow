@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="upload.css">
+  <title>Upload Crop Image</title>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Your Logo</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/main.html">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="upload-section">
+    <div class="upload-container" onclick="triggerFileInput()">
+      <div class="upload-text">Click here or drag a file to upload</div>
+      <input type="file" id="fileInput" onchange="previewImage(event)">
+      <img id="previewImage" />
+    </div>
+
+    <button class="upload-btn" onclick="triggerFileInput()">Upload Image</button>
+  </div>
+
+  <script>
+    function triggerFileInput() {
+      document.getElementById('fileInput').click();
+    }
+
+    function previewImage(event) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        const output = document.getElementById('previewImage');
+        output.src = reader.result;
+        output.style.display = 'block';
+      }
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  </script>
+</body>
+</html>

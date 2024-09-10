@@ -1,0 +1,144 @@
+<link rel="stylesheet" href="styles.css">
+<header>
+  <div class="logo">
+    <h1>AGROSSIANS</h1>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="/main.html">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="form-wrapper">
+  <h2 class="title">Find out the most suitable crop to grow in your farm</h2>
+
+  <div class="form-container">
+    <form method="POST" action="{{ url_for('crop_prediction') }}">
+      <div class="form-group">
+        <label for="Nitrogen"><b>Nitrogen</b></label>
+        <input
+          type="number"
+          class="form-control"
+          id="Nitrogen"
+          name="nitrogen"
+          placeholder="Enter the value (example: 50)"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="Phosphorous"><b>Phosphorous</b></label>
+        <input
+          type="number"
+          class="form-control"
+          id="Phosphorous"
+          name="phosphorous"
+          placeholder="Enter the value (example: 50)"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="Pottasium"><b>Pottasium</b></label>
+        <input
+          type="number"
+          class="form-control"
+          id="Pottasium"
+          name="pottasium"
+          placeholder="Enter the value (example: 50)"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="ph"><b>pH Level</b></label>
+        <input
+          type="number"
+          step="0.01"
+          class="form-control"
+          id="ph"
+          name="ph"
+          placeholder="Enter the value"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="Rainfall"><b>Rainfall (in mm)</b></label>
+        <input
+          type="number"
+          step="0.01"
+          class="form-control"
+          id="Rainfall"
+          name="rainfall"
+          placeholder="Enter the value"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="State"><b>State</b></label>
+        <select
+          id="sts"
+          name="stt"
+          class="form-control"
+          onchange="updateCities(this.value);"
+          required
+        >
+          <option value="" disabled selected>Select your state</option>
+          <!-- Add other states here -->
+        </select>
+        <br />
+        <label for="City"><b>City</b></label>
+        <select
+          id="City"
+          class="form-control"
+          name="City"
+          required
+        >
+          <option value="" disabled selected>Select your City</option>
+          <!-- Cities will be dynamically added here -->
+        </select>
+      </div>
+
+      <div class="form-group">
+        <button
+          type="submit"
+          class="btn-submit"
+        >
+          Predict
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const statesCities = fetch('cities.json')
+    .then(response => response.json())
+    .then(data => {
+      // Populate state dropdown
+      const stateSelect = document.getElementById('sts');
+      Object.keys(data).forEach(state => {
+        const option = document.createElement('option');
+        option.value = state;
+        option.textContent = state;
+        stateSelect.appendChild(option);
+      });
+    });
+
+  function updateCities(state) {
+    const citiesSelect = document.getElementById('City');
+    citiesSelect.innerHTML = ''; // Clear existing options
+
+    fetch('cities.json')
+      .then(response => response.json())
+      .then(data => {
+        const cities = data[state] || [];
+        cities.forEach(City => {
+          const option = document.createElement('option');
+          option.value = City;
+          option.textContent = City;
+          citiesSelect.appendChild(option);
+        });
+      });
+  }
+</script>

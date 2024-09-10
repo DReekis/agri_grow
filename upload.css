@@ -1,0 +1,125 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    
+  }
+  
+  /* Header styling */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    background-color: #2d6a4f;
+    padding: 20px 50px;
+    color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .logo h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+  }
+  
+  nav ul li {
+    display: inline;
+  }
+  
+  nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 5px 10px;
+    transition: background-color 0.3s;
+  }
+  
+  nav ul li a:hover {
+    background-color: #40916c;
+    border-radius: 5px;
+  }
+  
+  /* Section for upload */
+  .upload-section {
+    text-align: center;
+    margin-top: 120px; /* Adjusted for header */
+  }
+  
+  /* Container for the upload area */
+  .upload-container {
+    background-color: #ffffff;
+    border: 2px dashed #52b788;
+    border-radius: 12px;
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    margin-bottom: 20px; /* Adds space between box and button */
+  }
+  
+  .upload-container:hover {
+    border-color: #40916c;
+  }
+  
+  /* Upload button */
+  .upload-btn {
+    background-color: #52b788;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .upload-btn:hover {
+    background-color: #40916c;
+  }
+  
+  /* Hide default file input */
+  #fileInput {
+    display: none;
+  }
+  
+  /* Text in the box */
+  .upload-text {
+    color: #2d6a4f;
+    font-size: 18px;
+    margin-top: 15px;
+  }
+  
+  /* Preview image */
+  #previewImage {
+    display: none;
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+  
