@@ -7,6 +7,7 @@
   <title>Upload Crop Image</title>
 </head>
 <body>
+  <div class="background-container"></div>
   <header>
     <div class="logo">
       <h1>Your Logo</h1>
@@ -21,20 +22,24 @@
   </header>
 
   <div class="upload-section">
-    <div class="upload-container" onclick="triggerFileInput()">
-      <div class="upload-text">Click here or drag a file to upload</div>
-      <input type="file" id="fileInput" onchange="previewImage(event)">
-      <img id="previewImage" />
+    <!-- Replaced upload container with the new folder-style upload -->
+    <div class="container">
+      <div class="folder">
+        <div class="front-side">
+          <div class="tip"></div>
+          <div class="cover"></div>
+        </div>
+        <div class="back-side cover"></div>
+      </div>
+      <label class="custom-file-upload">
+        <input type="file" id="fileInput" onchange="previewImage(event)">
+        Choose a file
+      </label>
     </div>
-
-    <button class="upload-btn" onclick="triggerFileInput()">Upload Image</button>
+    <img id="previewImage" />
   </div>
 
   <script>
-    function triggerFileInput() {
-      document.getElementById('fileInput').click();
-    }
-
     function previewImage(event) {
       const reader = new FileReader();
       reader.onload = function () {

@@ -3,6 +3,18 @@ html body {
     font-family: Arial, sans-serif;
     color: #333;
   }
+  .background-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(/assets/bg.jpg);
+    filter: blur(4px) brightness(50%);
+    background-size: cover;
+     /* Decrease brightness */
+    z-index: -2;
+  }
   
   /* Header styling */
   header {
