@@ -25,16 +25,16 @@
         <h2 class="title">Find out the most suitable crop to grow in your farm</h2>
 
         <div class="form-container">
-            <form id="cropForm" method="POST" action="{{ url_for('crop_prediction') }}">
+            <form id="cropForm" method="POST" action="/predict">
                 <div class="form-group">
                     <label for="Nitrogen"><b>Nitrogen</b></label>
                     <input
                         type="number"
                         class="form-control"
                         id="Nitrogen"
-                        name="nitrogen"
+                        name="Nitrogen"
                         placeholder="Enter the value (example: 50)"
-                        required
+                        required step="0"
                     />
                 </div>
                 <div class="form-group">
@@ -45,7 +45,7 @@
                         id="Phosphorous"
                         name="phosphorous"
                         placeholder="Enter the value (example: 50)"
-                        required
+                        required step="00"
                     />
                 </div>
                 <div class="form-group">
@@ -56,8 +56,12 @@
                         id="Pottasium"
                         name="pottasium"
                         placeholder="Enter the value (example: 50)"
-                        required
+                        required step="0"
                     />
+                </div>
+                <div class="form-group">
+                    <label for="Temperature">Temperature</label>
+                    <input type="number" step="0.01" id="Temperature" name="Temperature" placeholder="Enter Temperature in °C" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="ph"><b>pH Level</b></label>
@@ -67,7 +71,7 @@
                         class="form-control"
                         id="ph"
                         name="ph"
-                        placeholder="Enter the value"
+                        placeholder="Enter pH level "
                         required
                     />
                 </div>
@@ -79,7 +83,7 @@
                         class="form-control"
                         id="Rainfall"
                         name="rainfall"
-                        placeholder="Enter the value"
+                        placeholder="Enter the rainfall amount in your area"
                         required
                     />
                 </div>
@@ -90,36 +94,8 @@
         </div>
     </div>
 
-    <!-- Output Popup -->
-    <div id="outputPopup" class="output-popup">
-        <div class="popup-content">
-            <span id="closePopup" class="close">&times;</span>
-            <p id="outputText">The best crop for your field is: <span id="output"></span></p>
-        </div>
+    <div class="result-box">
+        <p id="outputText">The best crop for your field is: <span id="output">{{ output }}</span></p>
     </div>
-
-    <script>
-        // Show output popup if there is an output
-        document.addEventListener('DOMContentLoaded', () => {
-            // Assuming you have a way to get the output from the Flask backend
-            const output = "{{ output }}"; // Get the output from the Flask context
-            if (output) {
-                document.getElementById('output').textContent = output;
-                document.getElementById('outputPopup').style.display = 'block';
-            }
-        });
-
-        // Close popup functionality
-        document.getElementById('closePopup').addEventListener('click', () => {
-            document.getElementById('outputPopup').style.display = 'none';
-        });
-
-        // Close popup when clicking outside of it
-        window.onclick = function(event) {
-            if (event.target === document.getElementById('outputPopup')) {
-                document.getElementById('outputPopup').style.display = 'none';
-            }
-        }
-    </script>
 </body>
 </html>

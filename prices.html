@@ -16,7 +16,7 @@
             <ul>
                 <li><a href="/main.html">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="/contacts.html">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -35,14 +35,14 @@
                     <!-- Add other states here -->
                 </select>
                 <br />
-                <label for="City"><b>City</b></label>
+                <label for="District"><b>District</b></label>
                 <select
-                    id="City"
+                    id="District"
                     class="form-control"
-                    name="City"
+                    name="District"
                     required
                 >
-                    <option value="" disabled selected>Select your City</option>
+                    <option value="" disabled selected>Select your District</option>
                     
                 </select>
                 <br />
@@ -58,8 +58,9 @@
                 </select>
                 <br />
                 <button
-                    type="submit"
+                    type="button"
                     class="btn-submit"
+                    onclick="getPrice()"
                 >
                     Get Price
                 </button>
@@ -67,8 +68,26 @@
         </div>
     </div>
 
+</div>
+</div>
+
+<div class="output-box">
+    <div class="terminal-loader">
+        <div class="terminal-header">
+            <div class="terminal-title">Status</div>
+            <div class="terminal-controls">
+                <div class="control close"></div>
+                <div class="control minimize"></div>
+                <div class="control maximize"></div>
+            </div>
+        </div>
+        <div class="text">Loading...</div>
+    </div>
+</div>
+
     <script>
-        const statesCities = fetch('cities.json')
+        // Fetch and populate states
+        fetch('cities.json')
             .then(response => response.json())
             .then(data => {
                 // Populate state dropdown
@@ -81,21 +100,57 @@
                 });
             });
 
-        function updateCities(state) {
-            const citiesSelect = document.getElementById('City');
-            citiesSelect.innerHTML = ''; 
+        // Fetch and populate commodities
+        fetch('commodities.json')
+            .then(response => response.json())
+            .then(commodities => {
+                const commoditySelect = document.getElementById('Commodity');
+                commodities.forEach(commodity => {
+                    const option = document.createElement('option');
+                    option.value = commodity;
+                    option.textContent = commodity;
+                    commoditySelect.appendChild(option);
+                });
+            });
 
+        // Update city dropdown based on selected state
+        function updateCities(state) {
             fetch('cities.json')
                 .then(response => response.json())
                 .then(data => {
-                    const cities = data[state] || [];
-                    cities.forEach(City => {
-                        const option = document.createElement('option');
-                        option.value = City;
-                        option.textContent = City;
-                        citiesSelect.appendChild(option);
-                    });
+                    const citySelect = document.getElementById('District');
+                    citySelect.innerHTML = '<option value="" disabled selected>Select your District</option>';
+                    if (data[state]) {
+                        data[state].forEach(city => {
+                            const option = document.createElement('option');
+                            option.value = city;
+                            option.textContent = city;
+                            citySelect.appendChild(option);
+                        });
+                    }
                 });
+        }
+
+        // Handle form submission and display result
+        function getPrice() {
+            const state = document.getElementById('sts').value;
+            const district = document.getElementById('District').value;
+            const commodity = document.getElementById('Commodity').value;
+            
+            if (state && district && commodity) {
+                // Here you would typically send a request to a server to get the price
+                // For this example, we'll just display the selected values
+                
+                const outputBox = document.getElementById('output-box');
+                outputBox.innerHTML = `
+                    <h3>Selected Information</h3>
+                    <p><strong>State:</strong> ${state}</p>
+                    <p><strong>District:</strong> ${district}</p>
+                    <p><strong>Commodity:</strong> ${commodity}</p>
+                `;
+            } else {
+                alert('Please fill out all fields.');
+            }
         }
     </script>
 </body>
