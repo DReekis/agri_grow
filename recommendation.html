@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crop Prediction</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href='styles.css'>
 </head>
 <body>
     <div class="background-container"></div>
@@ -25,7 +25,7 @@
         <h2 class="title">Find out the most suitable crop to grow in your farm</h2>
 
         <div class="form-container">
-            <form id="cropForm" method="POST" action="/predict">
+            <form id="cropForm" method="POST" action="{{ url_for('predict') }}">
                 <div class="form-group">
                     <label for="Nitrogen"><b>Nitrogen</b></label>
                     <input
@@ -43,9 +43,9 @@
                         type="number"
                         class="form-control"
                         id="Phosphorous"
-                        name="phosphorous"
+                        name="Phosphorous"
                         placeholder="Enter the value (example: 50)"
-                        required step="00"
+                        required step="0"
                     />
                 </div>
                 <div class="form-group">
@@ -54,24 +54,32 @@
                         type="number"
                         class="form-control"
                         id="Pottasium"
-                        name="pottasium"
+                        name="Pottasium"
                         placeholder="Enter the value (example: 50)"
                         required step="0"
                     />
                 </div>
                 <div class="form-group">
-                    <label for="Temperature">Temperature</label>
-                    <input type="number" step="0.01" id="Temperature" name="Temperature" placeholder="Enter Temperature in °C" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="ph"><b>pH Level</b></label>
+                    <label for="Temperature"><b>Temperature</b></label>
                     <input
                         type="number"
                         step="0.01"
                         class="form-control"
-                        id="ph"
-                        name="ph"
-                        placeholder="Enter pH level "
+                        id="Temperature"
+                        name="Temperature"
+                        placeholder="Enter Temperature in °C"
+                        required step="0"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="pH"><b>pH Level</b></label>
+                    <input
+                        type="number"
+                        step="0.01"
+                        class="form-control"
+                        id="pH"
+                        name="pH"
+                        placeholder="Enter pH level"
                         required
                     />
                 </div>
@@ -82,7 +90,7 @@
                         step="0.01"
                         class="form-control"
                         id="Rainfall"
-                        name="rainfall"
+                        name="Rainfall"
                         placeholder="Enter the rainfall amount in your area"
                         required
                     />
@@ -95,7 +103,7 @@
     </div>
 
     <div class="result-box">
-        <p id="outputText">The best crop for your field is: <span id="output">{{ output }}</span></p>
+        <p id="outputText">The best crop for your field is: <span id="output"></span></p>
     </div>
 </body>
 </html>
